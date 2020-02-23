@@ -19,10 +19,7 @@ app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 const getGeoIp = async ip => 
     axios.get(`http://api.ipstack.com/${ip}?access_key=${ipstackApiSecret}`)
         .catch(err => console.error(err))
-        .then(({data}) => {
-            console.log(data)
-            return data
-        })
+        .then(({data}) => data)
         
 const darkSkyCall = async ({latitude,longitude}) => 
     axios.get(`https://api.darksky.net/forecast/${darkSkyApiSecret}/${latitude},${longitude}`)
