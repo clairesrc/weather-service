@@ -1,0 +1,10 @@
+<div id="app"></div>
+<script>
+(async () => {
+    const weather = await fetch(`/weather`)
+    const {timezone, currently} = await weather.json()
+    document.getElementById('app').innerHTML = `
+        <p>Current weather conditions for ${timezone}: <strong>${currently.summary}</strong></p>
+        <p>Temperature is ${currently.temperature}&deg;C, humidity index is ${currently.humidity}, ${currently.precipIntensity} total precipitation</p>`;
+})()
+</script>
