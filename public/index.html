@@ -4,13 +4,14 @@
         color: #ccc;
     }
     #summary {
-        color: #595;
+        color: #9e9;
     }
     #temperature {
         color: #6a6;
     }
     #time {
-        color: #9e9;
+        color: #595;
+        size: 75%;
     }
 </style>
 <div id="app">Just a moment</div>
@@ -26,6 +27,6 @@ const render = async () => {
 }
 (async () => {
     await render
-    setInterval(await render, 1000)
+    setInterval(await render, 1800000)
 })()
 </script>
