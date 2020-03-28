@@ -2,6 +2,8 @@
 
 A simple Docker image for getting weather information for the machine the image is being run on.
 
+Uses Figlet to format the output, so that it looks like a 1337 terminal app when rendered in-browser.
+
 ## Build
 Copy .env.example to .env and fill out the missing API key secrets. 
 
