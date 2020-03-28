@@ -18,11 +18,7 @@ app.get('/weather', asyncHandler(async (req, res) =>
         .then(getGeoIp)
         .then(getWeather)
         .then(formatAllData)
-        .then(([time, temperature, summary]) => ({
-                    time,
-                    temperature,
-                    summary
-                }))
+        .then(([time, temperature, summary]) => {time, temperature, summary })
         .catch(e => console.error))
 ))
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
