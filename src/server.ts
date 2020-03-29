@@ -13,11 +13,11 @@ const ipstackApiSecret = process.env.IPSTACK_API_SECRET
 const geoip = new Geoip(ipstackApiSecret)
 const weather = new Weather(darkSkyApiSecret)
 
-const formatAllData = weather => 
+const formatAllData = ({currently}) => 
     Promise.all([
         new FormatOutput(`updated ${moment().format('hh : mm : ss A')}`),
-        new FormatOutput(`${weather.currently.temperature}°F`),
-        new FormatOutput(weather.currently.summary)
+        new FormatOutput(`${currently.temperature}°F`),
+        new FormatOutput(currently.summary)
     ])
 
 const getAndFormatWeather = (latitude, longitude) => 
@@ -27,7 +27,7 @@ const getAndFormatWeather = (latitude, longitude) =>
 
 const getGeoipAndFormattedWeather = () =>
     geoip.getGeoip()
-    .then(data => getAndFormatWeather(data.latitude, data.longitude))
+    .then(({latitude, longitude}) => getAndFormatWeather(latitude, longitude))
 
 const app = express()
 

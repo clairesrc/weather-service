@@ -9,7 +9,7 @@ export default class Weather {
 
     getWeather(latitude, longitude) {
         return axios.get(`https://api.darksky.net/forecast/${this.apiSecret}/${latitude},${longitude}`)
-        .catch(err => console.error(err))
         .then(({data}:any) => data)
+        .catch(err => console.error(err))
     }
 }
