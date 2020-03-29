@@ -1,8 +1,7 @@
 import express from 'express'
-import Geoip from './lib/Geoip'
 import FormatOutput from './lib/FormatOutput'
+import Geoip from './lib/Geoip'
 import Weather from './lib/Weather'
-import axios from 'axios'
 
 const ash = require('express-async-handler')
 const moment = require('moment')
@@ -10,8 +9,6 @@ const moment = require('moment')
 const port = process.env.APP_PORT
 const darkSkyApiSecret = process.env.DARKSKY_API_SECRET
 const ipstackApiSecret = process.env.IPSTACK_API_SECRET
-
-axios.defaults.baseURL = `http://localhost:${port}`
 
 const geoip = new Geoip(ipstackApiSecret)
 const weather = new Weather(darkSkyApiSecret)
