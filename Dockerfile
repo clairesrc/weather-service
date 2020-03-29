@@ -1,7 +1,9 @@
 FROM node:10
 WORKDIR /usr/src/app
+RUN npm i -g typescript
 COPY package*.json ./
 RUN yarn
 COPY . .
+RUN npm run build
 EXPOSE 8080
-CMD [ "node", "server.js" ]
+CMD [ "node", "dist/server.js" ]

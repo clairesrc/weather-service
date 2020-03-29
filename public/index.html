@@ -11,11 +11,12 @@
     }
     #time {
         color: #595;
-        size: 75%;
+        font-size: 75%;
     }
 </style>
 <div id="app">Just a moment</div>
 <script>
+
 const render = async () => {
     const weather = await fetch(`/weather`)
     const {summary, temperature, time} = await weather.json()
@@ -27,6 +28,6 @@ const render = async () => {
 }
 (async () => {
     await render()
-    setInterval(await render, 1800000)
+    setInterval(await render(), 1800000)
 })()
 </script>
