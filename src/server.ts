@@ -29,17 +29,12 @@ const getAndFormatWeather = (latitude, longitude) =>
     .then(([time, temperature, summary]) => ({time, temperature, summary}))
 
 const getGeoipAndFormattedWeather = () =>
-    axios.get(`/geoIp`)
-    .then(({data}) => axios.get(`/weather/${data.latitude}/${data.longitude}`))
-    .then(({data}) => data)
+    geoip.getGeoip()
+    .then(data => getAndFormatWeather(data.latitude, data.longitude))
 
 const app = express()
 
 app.use(express.static('public'))
-
-app.get('/geoIp', ash(async (req, res) => res.json(await geoip.getGeoip())))
-
-app.get('/weather/:lat/:lon', ash(async (req, res) => res.json(await getAndFormatWeather(req.params.lat, req.params.lon))))
 
 app.get('/weather', ash(async (req, res) => res.json(await getGeoipAndFormattedWeather())))
 
